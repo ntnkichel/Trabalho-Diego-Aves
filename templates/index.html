@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jogo das Aves</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>🐦 Jogo das Aves</h1>
+
+<p>Observe a imagem e pense em uma ave:</p>
+
+<img src="{{ url_for('static', filename='aves.png') }}" width="600">
+
+<hr>
+
+{% if resultado %}
+    <h2>✅ A ave é: {{ resultado }}</h2>
+
+    <form method="POST">
+        <button name="reset" value="1">🔄 Jogar novamente</button>
+    </form>
+
+{% else %}
+
+    <h3>{{ pergunta }}</h3>
+
+    <form method="POST">
+
+        <input type="hidden" name="etapa" value="{{ etapa }}">
+
+        <input type="hidden" name="linha1" value="{{ respostas.linha1 }}">
+        <input type="hidden" name="linha2" value="{{ respostas.linha2 }}">
+        <input type="hidden" name="coluna1" value="{{ respostas.coluna1 }}">
+        <input type="hidden" name="coluna2" value="{{ respostas.coluna2 }}">
+
+        <button name="resposta" value="s">Sim</button>
+        <button name="resposta" value="n">Não</button>
+
+    </form>
+
+{% endif %}
+
+</body>
+</html>
